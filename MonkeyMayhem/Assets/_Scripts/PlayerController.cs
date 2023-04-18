@@ -12,9 +12,21 @@ public class PlayerController : MonoBehaviour
 
 
     bool isJumping = false;
+    bool isAttacking = false;
 
 
+    public GameObject attackRange;
 
+    public void stopJump()
+    {
+        isJumping = false;
+    }
+
+    public void stopAttack()
+    {
+        isAttacking = false;
+        attackRange.SetActive(false);
+    }
 
     void Start()
     {
@@ -25,7 +37,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         // Jump
-        if(this.rigid2D.velocity.y < 0.0001)
+        if (this.rigid2D.velocity.y < 0.0001)
         {
             isJumping = false;
             this.animator.SetBool("isJumping", false);
@@ -34,18 +46,23 @@ public class PlayerController : MonoBehaviour
                 this.rigid2D.AddForce(transform.up * this.jumpForce);
                 this.animator.SetBool("isJumping", true);
                 isJumping = true;
+                this.animator.speed = 2.0f;
+
             }
         }
 
 
-        /**
-        if (Input.GetKeyDown(KeyCode.Space) && this.rigid2D.velocity.y < 0.0001) //comparing directly to 0 doesn't work for some reason
+        if (Input.GetMouseButtonDown(0))
         {
-            this.rigid2D.AddForce(transform.up * this.jumpForce);
-            this.animator.SetBool("isJumping", true);
-            isJumping = true;
+            this.animator.SetTrigger("TriggerAttack");
+            isAttacking = true;
+            this.animator.speed = 2.0f;
+
+            attackRange.SetActive(true);
+
         }
-        **/
+
+
 
         // move left and right
         int key = 0;
@@ -67,8 +84,8 @@ public class PlayerController : MonoBehaviour
             transform.localScale = new Vector3(key, 1, 1);
         }
 
-
-        if (isJumping)
+        
+        if (isJumping || isAttacking)
         {
             this.animator.speed = 2.0f;
         }
@@ -76,6 +93,20 @@ public class PlayerController : MonoBehaviour
         {
             this.animator.speed = speedx / 2.0f;
         }
+
+        
+        
+        /**
+        if (this.animator.GetCurrentAnimatorStateInfo(0).IsName("MonkeyWalk"))
+        {
+            this.animator.speed = speedx / 2.0f;
+        }
+
+        else
+        {
+            this.animator.speed = 2.0f;
+        }
+        **/
 
 
     }
