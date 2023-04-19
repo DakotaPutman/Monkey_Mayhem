@@ -6,6 +6,10 @@ public class PlayerController : MonoBehaviour
 {
     Rigidbody2D rigid2D;
     Animator animator;
+    public AudioSource Jump;
+    public AudioSource Attack;
+    public AudioSource PowerUp;
+
     float jumpForce = 250.0f;
     float walkForce = 10.0f;
     float maxWalkSpeed = 2.0f;
@@ -56,6 +60,7 @@ public class PlayerController : MonoBehaviour
 
         if(collision.gameObject.tag == "Coconut")
         {
+            PowerUp.Play();
             hasCoconut = true;
             hasMango = false; //only allow one powerup at a time
             powerUpTime = 10f;
@@ -65,6 +70,7 @@ public class PlayerController : MonoBehaviour
 
         if (collision.gameObject.tag == "Mango")
         {
+            PowerUp.Play();
             hasMango = true;
             hasCoconut = false;//only allow one powerup at a time
             powerUpTime = 10f;
@@ -119,6 +125,7 @@ public class PlayerController : MonoBehaviour
             this.animator.SetBool("isJumping", false);
             if (Input.GetKeyDown(KeyCode.Space)) //comparing directly to 0 doesn't work for some reason
             {
+                Jump.Play();
                 this.rigid2D.AddForce(transform.up * this.jumpForce);
                 this.animator.SetBool("isJumping", true);
                 isJumping = true;
@@ -134,6 +141,7 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
+            Attack.Play();
             this.animator.SetTrigger("TriggerAttack");
             isAttacking = true;
             this.animator.speed = 2.0f;
