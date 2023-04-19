@@ -10,12 +10,19 @@ public class PlayerController : MonoBehaviour
     float walkForce = 10.0f;
     float maxWalkSpeed = 2.0f;
 
+    int jumps = 1;
+
+    public float powerUpTime = 0f;
+    public bool hasCoconut = false;
+    public bool hasMango = false;
+
 
     bool isJumping = false;
     bool isAttacking = false;
 
 
     public GameObject attackRange;
+    CircleCollider2D attackCircle;
 
     public void stopJump()
     {
@@ -28,16 +35,85 @@ public class PlayerController : MonoBehaviour
         attackRange.SetActive(false);
     }
 
+
+    //when player collides with powerups, apply them, also handle jumping
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        //Reset Jump counter
+        if(collision.gameObject.tag == "Branch")
+        {
+            if (hasMango)
+            {
+                jumps = 2;
+            }
+            else
+            {
+                jumps = 1;
+            }
+
+        }
+
+
+        if(collision.gameObject.tag == "Coconut")
+        {
+            hasCoconut = true;
+            hasMango = false; //only allow one powerup at a time
+            powerUpTime = 10f;
+
+            Destroy(collision.gameObject);
+        }
+
+        if (collision.gameObject.tag == "Mango")
+        {
+            hasMango = true;
+            hasCoconut = false;//only allow one powerup at a time
+            powerUpTime = 10f;
+
+            Destroy(collision.gameObject);
+        }
+    }
+
+
+
     void Start()
     {
         this.rigid2D = GetComponent<Rigidbody2D>();
         this.animator = GetComponent<Animator>();
+
+        attackCircle = attackRange.GetComponent<CircleCollider2D>();
     }
 
     void Update()
     {
+        //handle any powerups
+        if (powerUpTime > 0)
+        {
+            powerUpTime -= Time.deltaTime;  //decrement timer
+
+            if (hasCoconut)
+            {
+                //increase attack range
+                attackCircle.radius = 1f;
+            }
+
+
+            //when powerups run out, reset values
+            if(powerUpTime <= 0)
+            {
+                attackCircle.radius = 0.5f;
+                hasCoconut = false;
+                hasMango = false;
+            }
+
+        }
+
+
+
+
         // Jump
-        if (this.rigid2D.velocity.y < 0.0001)
+
+        //only allow jumps if jump counter has room
+        if (jumps > 0)
         {
             isJumping = false;
             this.animator.SetBool("isJumping", false);
@@ -47,9 +123,13 @@ public class PlayerController : MonoBehaviour
                 this.animator.SetBool("isJumping", true);
                 isJumping = true;
                 this.animator.speed = 2.0f;
-
+                jumps -= 1; //decrement jump counter
             }
+
+
         }
+
+
 
 
         if (Input.GetMouseButtonDown(0))
@@ -95,18 +175,7 @@ public class PlayerController : MonoBehaviour
         }
 
         
-        
-        /**
-        if (this.animator.GetCurrentAnimatorStateInfo(0).IsName("MonkeyWalk"))
-        {
-            this.animator.speed = speedx / 2.0f;
-        }
-
-        else
-        {
-            this.animator.speed = 2.0f;
-        }
-        **/
+      
 
 
     }
