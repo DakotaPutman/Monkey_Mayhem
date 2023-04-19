@@ -1591,6 +1591,22 @@ PrefabInstance:
       propertyPath: spriteRenderer
       value: 
       objectReference: {fileID: 475733212}
+    - target: {fileID: 8869710805437810428, guid: e29f77ecd33ed64418252634d030bae9, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 227.3193
+      objectReference: {fileID: 0}
+    - target: {fileID: 8869710805437810428, guid: e29f77ecd33ed64418252634d030bae9, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 217.6085
+      objectReference: {fileID: 0}
+    - target: {fileID: 8869710805437810428, guid: e29f77ecd33ed64418252634d030bae9, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -842
+      objectReference: {fileID: 0}
+    - target: {fileID: 8869710805437810428, guid: e29f77ecd33ed64418252634d030bae9, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 466
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e29f77ecd33ed64418252634d030bae9, type: 3}
 --- !u!4 &1136504022 stripped

@@ -2718,7 +2718,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8869710804467803756, guid: e29f77ecd33ed64418252634d030bae9, type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8869710804467803756, guid: e29f77ecd33ed64418252634d030bae9, type: 3}
       propertyPath: m_AnchorMax.x
@@ -2796,5 +2796,21 @@ PrefabInstance:
       propertyPath: spriteRenderer
       value: 
       objectReference: {fileID: 475733212}
+    - target: {fileID: 8869710805437810428, guid: e29f77ecd33ed64418252634d030bae9, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 227.3193
+      objectReference: {fileID: 0}
+    - target: {fileID: 8869710805437810428, guid: e29f77ecd33ed64418252634d030bae9, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 208
+      objectReference: {fileID: 0}
+    - target: {fileID: 8869710805437810428, guid: e29f77ecd33ed64418252634d030bae9, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -851
+      objectReference: {fileID: 0}
+    - target: {fileID: 8869710805437810428, guid: e29f77ecd33ed64418252634d030bae9, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 447
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e29f77ecd33ed64418252634d030bae9, type: 3}
