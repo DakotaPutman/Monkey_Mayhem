@@ -732,7 +732,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cebf8f6e996ab714fa67ee387a47590c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spoilTime: 35
+  spoilTime: 140
   spriteRenderer: {fileID: 475733212}
   sprite1: {fileID: 21300000, guid: 7891276cd1851fe4f8989c86f77597c3, type: 3}
   sprite2: {fileID: 21300000, guid: c0633d7e65014e44e890c84e2769b560, type: 3}
@@ -2872,7 +2872,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8869710804467803756, guid: e29f77ecd33ed64418252634d030bae9, type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 8869710804467803756, guid: e29f77ecd33ed64418252634d030bae9, type: 3}
       propertyPath: m_AnchorMax.x
