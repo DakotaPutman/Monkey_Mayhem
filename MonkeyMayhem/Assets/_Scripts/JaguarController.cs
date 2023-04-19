@@ -8,6 +8,15 @@ public class JaguarController : MonoBehaviour
     Animator animator;
     float walkSpeed = 1.0f;
 
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            Rigidbody2D playerRigid = collision.gameObject.GetComponent<Rigidbody2D>();
+            playerRigid.AddForce(collision.GetContact(0).normal * -400f);
+        }
+    }
+
 
     // Start is called before the first frame update
     void Start()
@@ -23,22 +32,27 @@ public class JaguarController : MonoBehaviour
 
         GameObject player = GameObject.FindWithTag("Player");
         float playerLocation = player.transform.position.x;
-        int key = 0;
-        if (this.transform.position.x > playerLocation)
+        if ((Mathf.Abs(this.transform.position.x - playerLocation) <= 3) && (Mathf.Abs(this.transform.position.y - player.transform.position.y) <= 3))
         {
-            transform.Translate(Vector2.left * Time.deltaTime * walkSpeed);
-            key = -1;
+            int key = 0;
+            if (this.transform.position.x > playerLocation)
+            {
+                transform.Translate(Vector2.left * Time.deltaTime * walkSpeed);
+                key = -1;
 
+
+            }
+
+            else if (this.transform.position.x < playerLocation)
+            {
+                transform.Translate(Vector2.right * Time.deltaTime * walkSpeed);
+                key = 1;
+            }
+
+            transform.localScale = new Vector3(key, 1, 1);
 
         }
-
-        else if (this.transform.position.x < playerLocation)
-        {
-            transform.Translate(Vector2.right * Time.deltaTime * walkSpeed);
-            key = 1;
-        }
-
-        transform.localScale = new Vector3(key, 1, 1);
+        
 
     }
 }

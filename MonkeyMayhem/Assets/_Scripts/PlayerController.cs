@@ -123,7 +123,7 @@ public class PlayerController : MonoBehaviour
         {
             isJumping = false;
             this.animator.SetBool("isJumping", false);
-            if (Input.GetKeyDown(KeyCode.Space)) //comparing directly to 0 doesn't work for some reason
+            if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow)) //comparing directly to 0 doesn't work for some reason
             {
                 Jump.Play();
                 this.rigid2D.AddForce(transform.up * this.jumpForce);
